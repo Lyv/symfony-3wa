@@ -1,0 +1,4 @@
+troiswa_public:
+    resource: "@TroiswaPublicBundle/Resources/config/routing.yml"
+    prefix:   /
+

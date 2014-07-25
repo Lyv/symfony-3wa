@@ -1,0 +1,149 @@
+{% extends 'TroiswaPublicBundle:Main:layout.html.twig' %}
+
+
+    {% block title  %}
+
+
+    <title>Film {{ parent() }}</title>
+
+
+    {% endblock %}
+
+
+
+
+   {% block body %}
+
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">{{ film.titre }}
+                    <small>Un film à voir</small>
+                </h1>
+
+                
+
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('troiswa_public_homepage') }}">Accueil</a>
+                    </li>
+                    <li><a href="{{ path('troiswa_public_films') }}">Films</a>
+                    </li>
+                    <li class="active">{{ film.titre }}
+                    </li>
+                
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="{{ asset( asset(film.webPath)) }}" height="800" width ="600">
+            </div>
+
+            <div class="col-md-4">
+                    
+
+                <h3>Note des spectateurs</h3>
+                <div class="raty" data-score = {{ film.spectateurs}} >
+                </div>
+                <h3>Catégorie:
+                
+                    {% if film.categorie  %}
+                    {{ film.categorie.titre }}
+                    {% endif %}
+
+                 </h3>
+
+
+                <h3>Synopsis</h3>
+                <p>{{ film.synopsis }}</p>
+                <h3>L'histoire</h3>         
+                <p>{{ film.description }}</p>
+                <h3>Date de sortie</h3>
+                <p>{{ film.datecreation | date('d-m-Y') }}</p>
+                <h4>
+                    <a href="
+                    {{ path('troiswa_public_admin_editer_film', {'filmid': film.id } )}}"
+                    > Editer les infos du film </a> 
+
+            </h4>
+            
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Related Projects</h3>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+     <div class="container">
+
+        <hr>
+
+  
+    {% endblock %}
+
+ 
+
+    {% block javascript %}
+
+
+     <script>
+        $(document).ready(function(){
+
+            $(".raty").raty({
+
+            path: "{{ app.request.basePath }}/js/lib/images",
+            //app.request.basePath -> affiche le chemin jusqu'à web
+            
+            readOnly : true,
+            score : function(){
+                return $(this).attr('data-score');
+
+            }
+
+
+
+            });
+
+        })
+
+    </script>
+
+    {% endblock %}

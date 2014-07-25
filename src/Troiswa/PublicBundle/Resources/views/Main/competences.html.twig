@@ -1,0 +1,38 @@
+Ce que je sais faire:
+
+
+
+<ul>
+{% for comp, info in competences %}
+    <li> {{ comp }} </li>
+
+    
+    <input data-max="10" value = {{ info.note }} data-fgColor= {{ info.couleur }} data-bgColor="#DDD" data-readOnly=true type="text" value="75" class="dial">
+    {#{{info.note} equivalent à {{info ['note']}#}
+
+{% endfor %}
+</ul>
+
+
+
+{# 1er param {{ comp }} : affiche la clé du tableau // 
+2eme param {{ note}} : affiche la valeur du tableau   #}
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+{#Sur les serveurs de jquery#}
+
+{#Utilisation du plugin http://anthonyterrien.com/knob/#}
+
+<script src="{{asset("js/jquery.knob.js")}}"></script> 
+<script>
+    $(document).ready(function(){
+        $(".dial").knob();
+
+
+    }
+
+        )
+
+
+</script>
+

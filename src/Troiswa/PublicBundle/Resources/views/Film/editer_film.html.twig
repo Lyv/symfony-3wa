@@ -1,0 +1,177 @@
+{% extends 'TroiswaPublicBundle:Main:layout.html.twig' %}
+
+    {% block title  %}
+
+
+    <title>Editer {{ parent() }}</title>
+
+
+    {% endblock %}
+
+
+
+
+   {% block body %}
+
+    {% for message in app.session.flashbag.get('info')     %}
+    {#affichage du message de confirmation #}
+       <div class = "alert alert-success" >
+        
+        {{ message }}
+
+        </div>
+
+
+    {% endfor %}
+
+
+
+    <br>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        {{ form_start(formFilm,{'attr':{'novalidate':'novalidate'}}) }}
+
+
+   {#titre#}
+   <div class="form-group">
+        {{ form_label(formFilm.titre,'Titre')}}
+   {# <label>Prénom</label> #}
+
+        {{ form_widget(formFilm.titre,{'attr':{'class':'form-control', 'placeholder':"Titre"}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.titre)}}
+   </div>
+
+
+   {#synopsis#}
+   <div class="form-group">
+        {{ form_label(formFilm.synopsis,'Synopsis')}}
+
+
+        {{ form_widget(formFilm.synopsis,{'attr':{'class':'form-control', 'placeholder':"Synopsis"}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.synopsis)}}
+   </div>
+
+
+
+
+   {#description#}
+   <div class="form-group">
+        {{ form_label(formFilm.description, 'Description')}}
+   {# <label>biographie</label> #}
+
+        {{ form_widget(formFilm.description,{'attr':{'class':'form-control', 'placeholder':"Description"}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.description)}}
+   </div>
+
+
+   {#categorie#}
+   <div class="form-group">
+        {{ form_label(formFilm.categorie, 'Catégorie')}}
+   {# <label>biographie</label> #}
+
+        {{ form_widget(formFilm.categorie,{'attr':{'class':'form-control', 'placeholder':"Categorie"}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.categorie)}}
+   </div>
+
+
+    {#dateCreation#}
+   <div class="form-group">
+        {{ form_label(formFilm.dateCreation, 'Date de sortie')}}
+   {# <label>datenaissance</label> #}
+
+        {{ form_widget(formFilm.dateCreation,{'attr':{'class':'form-control'}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.dateCreation)}}
+   </div>
+
+
+   {#spectateurs#}
+
+
+   <div class="form-group">
+        {{ form_label(formFilm.spectateurs, 'Spectateurs')}}
+   {# <label>biographie</label> #}
+
+        {{ form_widget(formFilm.spectateurs,{'attr':{'class':'form-control'}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.spectateurs)}}
+
+         <span id="note"> </span>
+
+    </div>
+
+   
+       {#fichier photo#}
+   <div class="form-group">
+        {{ form_label(formFilm.fichier, 'Photo')}}
+   {# <label>biographie</label> #}
+
+        {{ form_widget(formFilm.fichier,{'attr':{'class':'form-control',}}) }}
+   {# <input type="text"> #}
+
+        {{ form_errors(formFilm.fichier)}}
+   </div>
+
+
+
+        {{ form_widget(formFilm.Modifier,{'attr':{'class':'btn btn-primary'}}) }}
+   </div>
+
+
+        {{ form_end(formFilm) }}
+   </div>
+
+</div>
+
+{% endblock %}
+
+
+
+ 
+
+    {% block javascript %}
+
+
+     <script>
+        $(document).ready(function(){
+
+            $("#note").raty({
+
+            path: "{{ app.request.basePath }}/js/lib/images",
+            //app.request.basePath -> affiche le chemin jusqu'à web
+            
+            scoreName: "{{ formFilm.vars.name }}[spectateurs]" //plutôt que mettre le nom du form en dur: 
+            //troiswa_publicbundle_films[spectateurs]
+
+            })
+
+            $("#note input").val(0);
+
+            ;
+
+        })
+
+    </script>
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,356 @@
+<?php
+
+namespace Troiswa\PublicBundle\Entity;
+
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Films
+ *
+ * @ORM\Table(name="film")
+ * @ORM\Entity(repositoryClass="Troiswa\PublicBundle\Entity\FilmRepository")
+ */
+class Film
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="text")
+     * @ASSERT\NotBlank(message="veuillez rentrer un titre");
+     * @ASSERT\Length(min = 2, minMessage="veuillez rentrer un titre plus long");
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="synopsis", type="text")
+     * @ASSERT\NotBlank(message="veuillez rentrer un synopsis")
+     * @ASSERT\Length(max = 100, maxMessage="veuillez rentrer un synopsis de moins de 100 caracteres");
+     */
+    private $synopsis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     * @ASSERT\NotBlank(message="veuillez rentrer une description")
+     * @ASSERT\Length(min = 2, minMessage="veuillez rentrer une description de minimum 100 caracteres");
+     */
+    private $description;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="dateCreation", type="date")
+     * @ASSERT\NotBlank(message="veuillez rentrer une date de création")
+     */
+    private $dateCreation;
+
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spectateurs", type="integer")
+     * @ASSERT\NotBlank(message="Veuillez rentrer une note")
+     * @ASSERT\Range(min = 0, max = 5, minMessage="Veuillez rentrer une note valide", maxMessage="Veuillez rentrer une note valide");
+     */
+    private $spectateurs;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string")
+    */
+    private $image;
+
+      /**
+     * @ASSERT\NotBlank(message="Veuillez ajouter un fichier");
+     * @Assert\Image(
+     *     maxSize = "1000k",
+     *     maxSizeMessage = "Le fichier est trop lourd, choisir un fichier de moins d'1 M",
+     *     mimeTypes = {"image/png", "image/jpeg", "image/pjpeg"},
+     *     mimeTypesMessage = "Choisissez un fichier image valide"
+     * )
+     */
+    private $fichier;
+
+
+
+
+    #On rajoute la propriété catégorie - Relation Many to One avec le film: ue categorie = un film
+
+    /**
+    *@ORM\ManyToOne(targetEntity = "Troiswa\PublicBundle\Entity\Categorie", inversedBy = "films")
+    */
+    private $categorie;
+
+
+
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     * @return Film
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+
+    /**
+     * Set synopsis
+     *
+     * @param string $synopsis
+     * @return Film
+     */
+    public function setSynopsis($synopsis)
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    /**
+     * Get synopsis
+     *
+     * @return string 
+     */
+    public function getSynopsis()
+    {
+        return $this->synopsis;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Film
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return Film
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set spectateurs
+     *
+     * @param integer $spectateurs
+     * @return Film
+     */
+    public function setSpectateurs($spectateurs)
+    {
+        $this->spectateurs = $spectateurs;
+
+        return $this;
+    }
+
+    /**
+     * Get spectateurs
+     *
+     * @return integer 
+     */
+    public function getSpectateurs()
+    {
+        return $this->spectateurs;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Film
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+
+    /**
+     * Set fichier
+     *
+     * @param string $fichier
+     * @return Film
+     */
+    public function setFichier($fichier)
+    {
+        $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    /**
+     * Get fichier
+     *
+     * @return string 
+     */
+    public function getFichier()
+    {
+        return $this->fichier;
+    }
+
+
+    
+
+    public function upload(){
+            if(null === $this -> fichier){
+
+                return;
+
+            }
+
+            $nameFile = $this -> titre . '_'. uniqid() . '.' . $this -> fichier -> guessExtension ();
+
+            $this -> fichier -> move($this -> getUploadBootDir(), $nameFile); //pour indiquer le chemin où on veut uploader - move (lieu, nom)
+            $this-> image = $nameFile;
+
+            /*
+            $this -> fichier -> move($this -> getUploadBootDir(), $this -> fichier -> getClientOriginalName()); //pour indiquer le chemin où on veut uploader - move (lieu, nom)
+            $this-> image = $this -> fichier -> getClientOriginalName(); //Pour reprendre le nom initial du fichier
+            */
+    
+
+    }
+
+
+   public function getUploadDir(){
+
+        return "uploads/Films";
+
+    }
+
+
+
+
+    public function getWebPath(){
+
+        if(null === $this -> image){
+            return null;
+        }
+
+        return $this -> getUploadDir() . "/". $this -> image;
+    }
+
+
+
+
+
+    public function getUploadBootDir(){
+
+        return __DIR__ . '/../../../../web/'. $this -> getUploadDir() ; //symfony crée le fichier upload
+
+    }
+
+
+
+    /**
+     * Set categorie
+     *
+     * @param \Troiswa\PublicBundle\Entity\Categorie $categorie
+     * @return Film
+     */
+    public function setCategorie(\Troiswa\PublicBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Troiswa\PublicBundle\Entity\Categorie 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+}

@@ -1,0 +1,166 @@
+<?php
+
+namespace Troiswa\PublicBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Films
+ *
+ * @ORM\Table(name="films")
+ * @ORM\Entity(repositoryClass="Troiswa\PublicBundle\Entity\FilmRepository")
+ */
+class Films
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="text")
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="synopsis", type="text")
+     */
+    private $synopsis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spectateurs", type="integer")
+     */
+    private $spectateurs;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     * @return Films
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string 
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+
+
+
+    /**
+     * Set synopsis
+     *
+     * @param string $synopsis
+     * @return Films
+     */
+    public function setSynopsis($synopsis)
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    /**
+     * Get synopsis
+     *
+     * @return string 
+     */
+    public function getSynopsis()
+    {
+        return $this->synopsis;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Films
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return Films
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+}

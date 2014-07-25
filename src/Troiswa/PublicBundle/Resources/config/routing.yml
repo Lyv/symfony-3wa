@@ -1,0 +1,82 @@
+troiswa_public_homepage: #identifiant  
+    #path:     /hello/{name} #Root Le lien - crochet veut dire qu'on peut mettre ce qu'on veut
+    path:     / #sera notre nouvelle page d'accueil
+    defaults: { _controller: TroiswaPublicBundle:Main:index }
+    #Default remplacé par Main
+    #defaults lie l'url au _controller (et un controller est lié à une vue)
+    #default: correspond au controller Fichier:Defaultcontroller
+    #index correspond à l'action Fonction: indexAction
+
+
+troiswa_public_bonjour: #identifiant  
+    path:     /bonjour #sera notre nouvelle page d'accueil
+    defaults: { _controller: TroiswaPublicBundle:Main:bonjour }
+
+
+#Créer une variable dans un routing
+troiswa_public_variable:
+    path:    /age/{number}
+    defaults: { _controller: TroiswaPublicBundle:Main:age }
+    requirements:
+        page: \d+ #Oblige le paramètre à être un nombre
+
+troiswa_public_competences:
+    path:    /competences
+    defaults: { _controller: TroiswaPublicBundle:Main:competences }
+
+
+troiswa_public_films:
+    path:    /films
+    defaults: { _controller: TroiswaPublicBundle:Film:films }
+
+
+troiswa_public_film:
+    path:    /film/{filmid}
+    defaults: { _controller: TroiswaPublicBundle:Film:film }
+    requirements:
+        page: \d+
+
+
+troiswa_public_acteurs:
+    path:    /acteurs
+    defaults: { _controller: TroiswaPublicBundle:Acteur:acteurs }
+
+
+troiswa_public_acteur:
+    path:    /acteur-{acteurid}
+    defaults: { _controller: TroiswaPublicBundle:Acteur:acteur }
+    requirements:
+        page: \d+
+
+
+
+
+troiswa_public_admin_ajouter_acteur:
+    path:    /admin/acteurs/ajouter
+    defaults: { _controller: TroiswaPublicBundle:Acteur:ajouter_acteur }
+        # Acteur: nom de la classe - ajouter_acteur : nom de l"action
+
+
+troiswa_public_admin_editer_acteur:
+    path:    /admin/acteurs/editer-{acteurid}
+    defaults: { _controller: TroiswaPublicBundle:Acteur:editer_acteur }
+
+troiswa_public_admin_ajouter_film:
+    path:    /admin/films/ajouter
+    defaults: { _controller: TroiswaPublicBundle:Film:ajouter_film }
+
+
+troiswa_public_admin_editer_film:
+    path:    /admin/films/editer-{filmid}
+    defaults: { _controller: TroiswaPublicBundle:Film:editer_film }
+
+
+
+troiswa_public_contact:
+    path:    /contact
+    defaults: { _controller: TroiswaPublicBundle:Contact:contact }
+
+
+troiswa_public_categories:
+    path:    /categories
+    defaults: { _controller: TroiswaPublicBundle:Categorie:categories }

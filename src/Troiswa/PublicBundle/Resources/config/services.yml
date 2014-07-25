@@ -1,0 +1,7 @@
+parameters:
+#    troiswa_public.example.class: Troiswa\PublicBundle\Example
+
+services:
+#    troiswa_public.example:
+#        class: %troiswa_public.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,493 @@
+{% extends 'TroiswaPublicBundle:Main:layout.html.twig' %}
+
+
+    {% block title  %}
+
+
+    <title> Films {{ parent() }}</title>
+
+
+    {% endblock %}
+
+
+
+
+    {% block body %}
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Films
+                    <small>Les derniers films</small>
+                </h1>
+                <h4><a href="{{ path('troiswa_public_admin_ajouter_film') }}"> Ajouter un film </a> </h4>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('troiswa_public_homepage') }}">Accueil</a>
+                    </li>
+                    <li class="active">Films</li>
+                </ol>
+            </div>
+
+        </div>
+
+
+
+
+
+        {% for film, info in films %}
+
+        <hr>
+
+        <div class="row">
+
+            
+            <div class="col-md-7">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive" src="{{ asset( asset(info.webPath)) }}" height="600" width="600">
+                </a>
+            </div>
+
+
+
+            <div class="col-md-5">
+                <h3><a href="{{ path('troiswa_public_film', {'filmid': info.id}) }}" >{{ info.titre }}</a></h3>
+                
+                <div class="raty" data-score = {{ info.spectateurs}} >
+
+                </div>
+
+
+                <h4>
+                     {% if info.categorie  %}
+                    {{ info.categorie.titre }}
+                    {% endif %}
+
+                </h4>
+                <p>{{ info.synopsis }}</p>
+                <a class="btn btn-primary" href=" {{ path('troiswa_public_film', {'filmid': info.id}) }}">Voir le film <i class="fa fa-angle-right"></i></a>
+            </div>
+
+
+
+        </div>
+
+        <hr>
+
+        
+
+        
+
+        {% endfor %}
+
+
+        <hr>
+
+        <div class="row text-center">
+
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a>
+                    </li>
+                    <li class="active"><a href="#">1</a>
+                    </li>
+                    <li><a href="#">2</a>
+                    </li>
+                    <li><a href="#">3</a>
+                    </li>
+                    <li><a href="#">4</a>
+                    </li>
+                    <li><a href="#">5</a>
+                    </li>
+                    <li><a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    {% endblock %}
+
+
+
+
+    {% block javascript %}
+
+
+     <script>
+        $(document).ready(function(){
+
+            $(".raty").raty({
+
+            path: "{{ app.request.basePath }}/js/lib/images",
+            //app.request.basePath -> affiche le chemin jusqu'à web
+            
+            readOnly : true,
+            score : function(){
+                return $(this).attr('data-score');
+
+            }
+
+
+
+            });
+
+        })
+
+    </script>
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
